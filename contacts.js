@@ -27,12 +27,21 @@ async function removeContact(contactId) {
         return null;
     }
     const [removeContact] = allContacts.splice(deleteId, 1);
-    updateContact(allContact);
+    updateContact(allContacts);
     return removeContact;
 }
 
 async function addContact(name, email, phone) {
- 
+    const allContacts = await listContacts();
+    const newContact = {
+        name,
+        email,
+        phone
+    };
+
+    allContacts.push(newContact);
+    updateContact(allContacts);
+    return newContact;
 }
 
 module.exports = {
