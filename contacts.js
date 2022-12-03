@@ -16,17 +16,19 @@ async function listContacts() {
 
 async function getContactById(id) {
     const allContacts = await listContacts();
-    const contactById = allContacts.find((contact) => contact.id === id);
+    const contactById = allContacts.find(contact => contact.id === `${ id }`);
 
     return contactById || null;
 }
 
 async function removeContact(id) {
     const allContacts = await listContacts();
-    const deleteId = allContacts.findIndex(contact => contact.id === id);
+    const deleteId = allContacts.findIndex(contact => contact.id === `${ id }`);
+    
     if (deleteId === -1) {
         return null;
     }
+
     const [removeContact] = allContacts.splice(deleteId, 1);
     updateContact(allContacts);
     return removeContact;
